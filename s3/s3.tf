@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3" {
-  bucket = "oncdecb9-buckect-infra-pipeline"
+  bucket = var.buckets_name
   tags   = {
     porject = "demo-oncdec"
   }
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "s3" {
 resource "aws_s3_bucket_versioning" "versioning_example" {
   bucket = aws_s3_bucket.s3.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.bucket_versioning
   }
 }
 
