@@ -5,15 +5,15 @@ resource "aws_s3_bucket" "s3" {
   }
 }
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.73.0"
-    }
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.s3.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.s3.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
